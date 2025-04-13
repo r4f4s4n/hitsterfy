@@ -1,0 +1,143 @@
+# Hitsterfy 🎵
+
+Hitsterfy es una aplicación web responsive inspirada en Spotify que te permite jugar a adivinar canciones de tus playlists favoritas. Reproduce canciones aleatorias sin mostrar información, manteniendo un registro de las que ya has escuchado para evitar repeticiones.
+
+![Hitsterfy Logo](public/favicon.svg)
+
+## 🚀 Características
+
+- **Autenticación de usuarios** utilizando Supabase
+- **Integración completa con Spotify** para reproducción de canciones enteras
+- **Juego de adivinanza musical** donde debes identificar la canción que está sonando
+- **Modo "revelar"** que muestra detalles de la canción actual (año, artista, título)
+- **Seguimiento de canciones escuchadas** para no repetir canciones de la misma playlist
+- **Diseño responsive** que funciona en dispositivos móviles y de escritorio
+- **Estética inspirada en Spotify** con un diseño moderno y atractivo
+
+## 📋 Prerrequisitos
+
+- Node.js (versión 16.x o superior)
+- Yarn (alternativa a npm)
+- Cuenta en [Supabase](https://supabase.com/)
+- Cuenta de desarrollador en [Spotify](https://developer.spotify.com/)
+- **Cuenta Premium de Spotify** (requerida para la reproducción de canciones completas)
+
+## 🛠️ Tecnologías utilizadas
+
+- **React 19** con Hooks para la interfaz de usuario
+- **Vite** como herramienta de construcción
+- **React Router v7** para la navegación
+- **Tailwind CSS** para el diseño
+- **Supabase** para autenticación y base de datos
+- **Spotify Web API** para interactuar con Spotify
+- **Spotify Web Playback SDK** para la reproducción de música
+
+## ⚙️ Instalación y configuración
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/tu-usuario/hitsterfy.git
+cd hitsterfy
+```
+
+### 2. Instalar dependencias
+
+```bash
+yarn install
+```
+
+### 3. Configurar Supabase
+
+1. Crear una cuenta en [Supabase](https://supabase.com/)
+2. Crear un nuevo proyecto
+3. Ejecutar el script SQL proporcionado en `supabase-schema.sql` en el SQL Editor de Supabase
+4. Obtener la URL y la clave anónima de tu proyecto de Supabase
+
+### 4. Configurar una aplicación en el Dashboard de Spotify
+
+1. Crear una aplicación en el [Dashboard de Spotify para Desarrolladores](https://developer.spotify.com/dashboard)
+2. Configurar las URIs de redirección (por ejemplo, `http://localhost:3000/config` para desarrollo)
+3. Obtener el Client ID y Client Secret
+
+### 5. Crear archivo `.env`
+
+```
+VITE_SUPABASE_URL=https://tu-url-supabase.supabase.co
+VITE_SUPABASE_ANON_KEY=tu-clave-supabase
+```
+
+### 6. Ejecutar en modo desarrollo
+
+```bash
+yarn dev
+```
+
+## 📱 Uso de la aplicación
+
+1. **Registro/Login**: Crea una cuenta o inicia sesión en la aplicación
+2. **Configuración de Spotify**: Proporciona tus credenciales de Spotify siguiendo el flujo de autorización
+3. **Selección de playlist**: Introduce la URL de una playlist de Spotify
+4. **Juego**: Escucha la canción aleatoria y trata de adivinarla
+5. **Revelar**: Cuando quieras saber qué canción es, pulsa "REVELAR"
+6. **Continuar**: Pulsa "OTRA" para pasar a la siguiente canción
+
+## 🔑 Nota importante sobre Spotify Premium
+
+**La reproducción de canciones completas solo está disponible para usuarios con cuentas Premium de Spotify.** Esta es una limitación del Spotify Web Playback SDK, no de la aplicación en sí.
+
+## 🚀 Despliegue
+
+La aplicación puede desplegarse en servicios como:
+- [Vercel](https://vercel.com/)
+- [Netlify](https://www.netlify.com/)
+- [GitHub Pages](https://pages.github.com/)
+
+Para desplegar en producción, asegúrate de configurar las URIs de redirección de Spotify con tu dominio de producción.
+
+## 🧩 Estructura del proyecto
+
+```
+hitsterfy/
+├── public/                  # Archivos estáticos
+├── src/
+│   ├── assets/              # Imágenes y recursos
+│   ├── components/          # Componentes reutilizables
+│   ├── context/             # Contextos de React (Auth, Spotify)
+│   ├── hooks/               # Hooks personalizados
+│   ├── pages/               # Páginas/rutas de la aplicación
+│   ├── services/            # Servicios (Supabase, Spotify)
+│   ├── utils/               # Utilidades y funciones auxiliares
+│   ├── App.jsx              # Componente principal, configuración de rutas
+│   ├── main.jsx             # Punto de entrada
+│   └── index.css            # Estilos globales
+├── .eslintrc.cjs            # Configuración de ESLint
+├── .gitignore               # Archivos ignorados por Git
+├── index.html               # Plantilla HTML
+├── package.json             # Dependencias y scripts
+├── postcss.config.js        # Configuración de PostCSS
+├── tailwind.config.js       # Configuración de Tailwind CSS
+└── vite.config.js           # Configuración de Vite
+```
+
+## 🐛 Solución de problemas comunes
+
+- **Error "Spotify Premium is required"**: El Spotify Web Playback SDK requiere una cuenta Premium.
+- **Problemas con la autorización de Spotify**: Verifica que las URIs de redirección estén correctamente configuradas.
+- **La música no se reproduce**: Asegúrate de que Spotify esté funcionando en tu cuenta y que no estés reproduciendo música en otro dispositivo.
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - consulta el archivo LICENSE para más detalles.
+
+## 👏 Agradecimientos
+
+- [Spotify API](https://developer.spotify.com/documentation/web-api/) por proporcionar acceso a su servicio
+- [Supabase](https://supabase.com/) por la autenticación y base de datos
+- [Tailwind CSS](https://tailwindcss.com/) por los estilos
+- [Vite](https://vitejs.dev/) por la herramienta de construcción
+- [React](https://reactjs.org/) por el framework de interfaz de usuario
+
+---
+
+Desarrollado con ❤️ por [Histamina]
