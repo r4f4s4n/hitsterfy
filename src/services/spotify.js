@@ -216,24 +216,6 @@ class SpotifyService {
     }
   }
   
-  // Inicializar el reproductor de Spotify
-  async initializePlayer(playerName, onPlayerStateChanged, onPlaybackError, onPlaybackReady) {
-    try {
-      const token = await this.getAccessToken();
-      const initialized = await spotifyPlayback.initializePlayer(
-        token,
-        playerName || 'Hitsterfy Player',
-        onPlayerStateChanged,
-        onPlaybackError,
-        onPlaybackReady
-      );
-      return initialized;
-    } catch (error) {
-      console.error('Error al inicializar el reproductor de Spotify:', error);
-      throw error;
-    }
-  }
-
   // Reproducir una canción
   async playSong(trackUri, options = {}) {
     try {
@@ -328,7 +310,7 @@ class SpotifyService {
       throw error;
     }
   }
-  
+
 }
 
 export default new SpotifyService();
