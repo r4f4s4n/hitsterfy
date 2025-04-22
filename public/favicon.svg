@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Fondo circular verde de Spotify -->
+  <circle cx="256" cy="256" r="256" fill="#1DB954"/>
+  
+  <!-- Letra H en blanco estilo Spotify -->
+  <path d="M160 145v222h48V271h96v96h48V145h-48v78H208v-78z" fill="white"/>
+  
+  <!-- Ondas de sonido estilizadas -->
+  <path d="M388 198c-62-37-165-40-227-22-9 3-19-2-22-11-3-10 2-19 11-22 69-21 183-17 255 26 9 5 12 17 7 26-6 8-17 12-26 7l2 2zM366 252c-51-32-130-41-191-22-8 2-16-2-18-10-2-7 2-15 10-17 69-21 155-11 215 25 7 4 9 14 5 21s-14 9-21 5zM359 302c-42-26-99-32-147-18-6 2-12-1-14-7-2-6 1-12 7-14 54-16 120-9 168 21 5 3 7 10 4 16-3 5-11 7-16 4l-2-2z" fill="white" opacity="0.6"/>
+</svg>
