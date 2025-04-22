@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useSpotify } from '../context/SpotifyContext';
-import { getSpotifyConfig, saveSpotifyConfig, clearListenedSongs } from '../services/supabase';
+import { getSpotifyConfig, saveSpotifyConfig } from '../services/supabase';
 import Header from '../components/Header';
 
 const Config = () => {
   const { user } = useAuth();
-  const { spotifyService, isConfigured, refreshConnection } = useSpotify();
+  const { spotifyService, refreshConnection } = useSpotify();
   const navigate = useNavigate();
 
   const [clientId, setClientId] = useState('');
@@ -19,8 +19,6 @@ const Config = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [showAuthFlow, setShowAuthFlow] = useState(false);
-  const [clearingHistory, setClearingHistory] = useState(false);
-  const [historyCleared, setHistoryCleared] = useState(false);
 
   // Cargar configuración actual
   useEffect(() => {
@@ -173,26 +171,6 @@ const Config = () => {
     }
   };
 
-  // Limpiar historial de canciones escuchadas
-  const handleClearHistory = async () => {
-    if (!user) return;
-    
-    setClearingHistory(true);
-    setHistoryCleared(false);
-    
-    try {
-      await clearListenedSongs(user.id);
-      setHistoryCleared(true);
-      setTimeout(() => {
-        setHistoryCleared(false);
-      }, 3000);
-    } catch (err) {
-      setError('Error al limpiar el historial: ' + err.message);
-    } finally {
-      setClearingHistory(false);
-    }
-  };
-
   // Verificar si estamos recibiendo el código de autorización por URL
   useEffect(() => {
     if (window.location.search) {
@@ -223,12 +201,6 @@ const Config = () => {
         {success && (
           <div className="bg-green-500 bg-opacity-20 border border-green-500 text-green-100 px-4 py-3 rounded mb-6">
             ¡Conexión con Spotify establecida correctamente! Redirigiendo...
-          </div>
-        )}
-        
-        {historyCleared && (
-          <div className="bg-green-500 bg-opacity-20 border border-green-500 text-green-100 px-4 py-3 rounded mb-6">
-            Historial de canciones escuchadas borrado correctamente.
           </div>
         )}
 
@@ -365,23 +337,6 @@ const Config = () => {
             )}
           </div>
         </div>
-        
-        {isConfigured && (
-          <div className="bg-spotify-black bg-opacity-50 p-6 rounded-lg border border-gray-700">
-            <h2 className="text-xl font-semibold mb-4">Gestión de Historial</h2>
-            <p className="text-sm text-gray-300 mb-4">
-              Borra tu historial de canciones escuchadas para volver a jugar con todas las canciones de tus playlists favoritas.
-            </p>
-            
-            <button
-              onClick={handleClearHistory}
-              className="btn btn-secondary w-full"
-              disabled={clearingHistory}
-            >
-              {clearingHistory ? 'Borrando...' : 'Borrar Historial de Canciones'}
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
