@@ -346,11 +346,11 @@ const Player = () => {
 
   // Renderizar el reproductor
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900">
       <Header />
       
-      <div className="flex-1 container mx-auto px-4 py-8 flex flex-col">
-        <div className="flex-1 flex flex-col items-center justify-center gap-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 pt-2 pb-6">
+        <div className="w-full max-w-md flex flex-col items-center justify-center gap-6">
           {!playerInitialized && (
             <div className="flex flex-col items-center">
               <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-spotify-green mb-4"></div>

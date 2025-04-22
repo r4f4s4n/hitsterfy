@@ -23,48 +23,73 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 #root {
   width: 100%;
-  max-width: 1280px;
+  height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
 @layer components {
   .btn {
-    @apply py-2 px-4 rounded-full font-bold;
+    @apply py-2 px-4 rounded-full font-bold transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-50;
   }
   
   .btn-primary {
-    @apply bg-spotify-green text-white hover:bg-opacity-90;
+    @apply bg-spotify-green text-white hover:bg-opacity-90 focus:ring-spotify-green;
   }
 
   .btn-secondary {
-    @apply bg-white text-spotify-black hover:bg-opacity-90;
+    @apply bg-white text-spotify-black hover:bg-opacity-90 focus:ring-white;
   }
 
   .input {
-    @apply bg-white bg-opacity-10 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-spotify-green;
+    @apply bg-white bg-opacity-10 p-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-spotify-green transition-all duration-200;
   }
 }
 
 /* Estilos para el post-it amarillo */
 .post-it {
-  @apply bg-yellow-300 text-black p-4 rounded-md shadow-lg transform rotate-1 max-w-sm mx-auto;
+  @apply bg-yellow-300 text-black p-5 rounded-md shadow-lg transform rotate-1 max-w-sm mx-auto;
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  position: relative;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.3);
+  background-image: linear-gradient(to bottom, #ffeb3b, #ffd600);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.post-it::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.03),
+      rgba(0, 0, 0, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .post-it .year {
-  @apply text-3xl font-bold mb-2;
+  @apply text-4xl font-bold mb-3 text-center;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
 }
 
 .post-it .artist {
-  @apply text-lg mb-1;
+  @apply text-lg mb-2;
+  text-align: center;
 }
 
 .post-it .song {
   @apply text-xl font-semibold;
+  text-align: center;
 }
