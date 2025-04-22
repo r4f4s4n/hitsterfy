@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import spotifyService from '../services/spotify';
 import { useAuth } from './AuthContext';
 import { getSpotifyConfig } from '../services/supabase';
+import { SPOTIFY_CONFIG } from '../services/app-config';
 
 const SpotifyContext = createContext();
 
@@ -37,11 +38,12 @@ export const SpotifyProvider = ({ children }) => {
           console.error('Error al cargar la configuración de Spotify:', error);
           setConfigError(error.message);
           setIsConfigured(false);
-        } else if (config) {
-          // Configurar el servicio de Spotify con las credenciales guardadas
+        } else if (config && config.refresh_token) {
+          // Configurar el servicio de Spotify con las credenciales globales
+          // y el refresh token personal del usuario
           spotifyService.setCredentials(
-            config.client_id,
-            config.client_secret,
+            SPOTIFY_CONFIG.clientId,
+            SPOTIFY_CONFIG.clientSecret,
             config.refresh_token
           );
           setIsConfigured(true);
@@ -50,7 +52,10 @@ export const SpotifyProvider = ({ children }) => {
           const { success, error: connectionError } = await spotifyService.testConnection();
           setIsConnected(success);
           if (!success) {
-            setConfigError(connectionError);
+            setConfigError({
+              message: connectionError,
+              type: errorType || 'UNKNOWN'
+            });
           } else {
             setConfigError(null);
           }

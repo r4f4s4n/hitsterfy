@@ -38,12 +38,10 @@ export const saveSpotifyConfig = async (userId, clientId, clientSecret, refreshT
       .single();
     
     if (existingConfig) {
-      // Si ya existe, actualizamos en lugar de insertar
+      // Si ya existe, actualizamos solo el refresh token
       const { data, error } = await supabase
         .from('spotify_configs')
         .update({ 
-          client_id: clientId, 
-          client_secret: clientSecret,
           refresh_token: refreshToken,
           updated_at: new Date()
         })

@@ -207,12 +207,36 @@ class SpotifyService {
   async testConnection() {
     try {
       await this.getAccessToken();
-      const me = await this.spotifyApi.getMe();
-      console.log('Conexión con Spotify establecida correctamente:', me);
-      return { success: true, user: me };
-    } catch (error) {
-      console.error('Error al conectar con Spotify:', error);
-      return { success: false, error: error.message };
+      
+      try {
+        const me = await this.spotifyApi.getMe();
+        console.log('Conexión con Spotify establecida correctamente:', me);
+        return { success: true, user: me };
+      } catch (apiError) {
+        console.error('Error al conectar con Spotify:', apiError);
+        
+        // Verificar si es un error de usuario no registrado
+        if (apiError.status === 403) {
+          let errorMessage = 'Error de autenticación con Spotify';
+          
+          // Intentar extraer el mensaje de error real
+          try {
+            if (apiError.responseText && apiError.responseText.includes('user may not be registered')) {
+              errorMessage = 'El usuario no está registrado en la aplicación de Spotify. ' +
+                'El desarrollador necesita agregar tu correo electrónico en el panel de desarrollador de Spotify.';
+            }
+          } catch (e) {
+            // Si hay un error al analizar la respuesta, usar el mensaje genérico
+          }
+          
+          return { success: false, error: errorMessage, errorType: 'USER_NOT_REGISTERED' };
+        }
+        
+        return { success: false, error: apiError.message };
+      }
+    } catch (err) {
+      console.error('Error al conectar con Spotify:', err);
+      return { success: false, error: err.message };
     }
   }
   
