@@ -1,10 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Fondo circular verde de Spotify -->
-  <circle cx="256" cy="256" r="256" fill="#1DB954"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg">
+  <!-- Círculo negro de fondo (modo oscuro) -->
+  <circle cx="84" cy="84" r="84" fill="#121212"/>
   
-  <!-- Letra H en blanco estilo Spotify -->
-  <path d="M160 145v222h48V271h96v96h48V145h-48v78H208v-78z" fill="white"/>
+  <!-- Borde verde sutilmente brillante (estilo Spotify) -->
+  <circle cx="84" cy="84" r="82" fill="none" stroke="#1DB954" stroke-width="2"/>
   
-  <!-- Ondas de sonido estilizadas -->
-  <path d="M388 198c-62-37-165-40-227-22-9 3-19-2-22-11-3-10 2-19 11-22 69-21 183-17 255 26 9 5 12 17 7 26-6 8-17 12-26 7l2 2zM366 252c-51-32-130-41-191-22-8 2-16-2-18-10-2-7 2-15 10-17 69-21 155-11 215 25 7 4 9 14 5 21s-14 9-21 5zM359 302c-42-26-99-32-147-18-6 2-12-1-14-7-2-6 1-12 7-14 54-16 120-9 168 21 5 3 7 10 4 16-3 5-11 7-16 4l-2-2z" fill="white" opacity="0.6"/>
+  <!-- Letra H con efecto de ondas sonoras -->
+  <g fill="#1DB954">
+    <!-- Pilar izquierdo con ondas -->
+    <path d="M59 50 
+             C61 50, 63 50, 65 50
+             C67 55, 66 60, 68 65
+             C70 70, 67 75, 69 80
+             C71 85, 66 90, 68 95
+             C70 100, 67 105, 69 110
+             C71 115, 65 118, 63 118
+             C61 118, 59 118, 57 118
+             C55 113, 58 108, 56 103
+             C54 98, 57 93, 55 88
+             C53 83, 58 78, 56 73
+             C54 68, 57 63, 55 58
+             C53 53, 57 50, 59 50Z" />
+    
+    <!-- Pilar derecho con ondas -->
+    <path d="M109 50 
+             C107 50, 105 50, 103 50
+             C101 55, 102 60, 100 65
+             C98 70, 101 75, 99 80
+             C97 85, 102 90, 100 95
+             C98 100, 101 105, 99 110
+             C97 115, 103 118, 105 118
+             C107 118, 109 118, 111 118
+             C113 113, 110 108, 112 103
+             C114 98, 111 93, 113 88
+             C115 83, 110 78, 112 73
+             C114 68, 111 63, 113 58
+             C115 53, 111 50, 109 50Z" />
+    
+    <!-- Barra conectora central con ondas -->
+    <path d="M68 83
+             C72 82, 76 85, 80 84
+             C84 83, 88 82, 92 83
+             C96 84, 100 83, 104 84
+             C100 86, 96 85, 92 86
+             C88 87, 84 86, 80 85
+             C76 84, 72 85, 68 84
+             C72 82, 76 82, 80 83
+             C84 84, 88 85, 92 84
+             C96 83, 100 84, 104 83
+             C100 81, 96 82, 92 81
+             C88 80, 84 81, 80 82
+             C76 83, 72 81, 68 83Z" />
+  </g>
 </svg>

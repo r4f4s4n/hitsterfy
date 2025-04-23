@@ -182,10 +182,10 @@ const Config = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900">
+    <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900 overflow-hidden">
       <Header />
       
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 overflow-y-auto p-4 max-h-[calc(100vh-60px)]">
         <div className="w-full max-w-md mx-auto">
           <h1 className="text-2xl font-bold mb-6 text-center">Configuración de Spotify</h1>
           

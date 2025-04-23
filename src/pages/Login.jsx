@@ -39,19 +39,16 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900">
+    <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900 overflow-hidden">
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-spotify-green mb-2">Hitsterfy</h1>
-            <p className="text-gray-300">Adivina la canción, demuestra cuánto sabes de música</p>
+            <p className="text-gray-300">¿De qué año era la cación? Demuestra cuánto sabes de música</p>
           </div>
 
           <div className="bg-spotify-black bg-opacity-40 p-6 rounded-lg shadow-lg border border-gray-700">
-            <h2 className="text-2xl font-bold mb-6 text-center">
-              {isRegistering ? 'Crear cuenta' : 'Iniciar sesión'}
-            </h2>
-
+            
             {error && (
               <div className="bg-red-500 bg-opacity-20 border border-red-500 text-red-100 px-4 py-3 rounded mb-4">
                 {error}

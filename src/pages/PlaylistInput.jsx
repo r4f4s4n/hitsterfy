@@ -88,7 +88,7 @@ const PlaylistInput = () => {
   // Si no está configurado o conectado, mostrar mensaje y botón para ir a configuración
   if (!isConfigured || !isConnected) {
     return (
-      <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900">
+      <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900 overflow-hidden">
         <Header />
         
         <div className="flex-1 flex items-center justify-center p-4">
@@ -114,7 +114,7 @@ const PlaylistInput = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900">
+    <div className="flex flex-col h-screen bg-gradient-to-b from-spotify-black to-gray-900 overflow-hidden">
       <Header />
       
       <div className="flex-1 flex items-center justify-center p-4">
