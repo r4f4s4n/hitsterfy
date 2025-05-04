@@ -2,8 +2,8 @@ import React from 'react';
 
 const PauseButton = ({ onClick, size = 'large' }) => {
   const sizeClasses = size === 'large' 
-    ? 'w-48 h-48' 
-    : 'w-16 h-16';
+    ? 'w-80 h-80' // Aumentado de w-48 h-48 a w-80 h-80 (de 12rem a 20rem)
+    : 'w-20 h-20'; // Aumentado proporcionalmente el tamaño pequeño también
   
   // Crear IDs únicos para evitar conflictos con múltiples instancias del SVG
   const buttonId = React.useId();
