@@ -13,14 +13,26 @@ const PlayButton = ({ onClick, size = 'large' }) => {
   const subtleGreenId = `subtleGreen-${buttonId}`;
   const playGradientId = `playGradient-${buttonId}`;
   const circleClipId = `circleClip-${buttonId}`;
+  const outerGlowId = `outerGlow-${buttonId}`;
 
   return (
     <button
       onClick={onClick}
-      className={`${sizeClasses} rounded-full flex items-center justify-center hover:scale-105 transform transition-transform`}
+      className={`${sizeClasses} rounded-full flex items-center justify-center hover:scale-105 transform transition-transform border-2 border-green-400/30 relative`}
+      style={{
+        boxShadow: '0 0 15px rgba(16, 185, 129, 0.4), 0 0 30px rgba(0, 0, 0, 0.5)',
+      }}
       aria-label="Reproducir"
     >
-      <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      {/* Efecto de brillo sutil en el borde */}
+      <div 
+        className="absolute inset-0 rounded-full z-0 opacity-60" 
+        style={{ 
+          background: 'radial-gradient(circle at center, transparent 60%, rgba(52, 211, 153, 0.2) 80%, rgba(52, 211, 153, 0.05) 100%)',
+        }}
+      ></div>
+      
+      <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" className="w-full h-full relative z-10">
         <defs>
           <radialGradient id={darkGradientId} cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
             <stop offset="0%" stopColor="#2a2a2a" />
@@ -38,6 +50,17 @@ const PlayButton = ({ onClick, size = 'large' }) => {
             <stop offset="100%" stopColor="#1e1e1e" />
           </linearGradient>
           
+          {/* Resplandor exterior */}
+          <filter id={outerGlowId}>
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feFlood floodColor="#19a349" floodOpacity="0.3" result="color" />
+            <feComposite in="color" in2="blur" operator="in" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          
           {/* Trayectorias circulares para textos */}
           <path id={topPathId} d="M14,84 A70,70 0 1,1 154,84" />
           <path id={bottomPathId} d="M154,84 A70,70 0 1,1 14,84" />
@@ -51,7 +74,7 @@ const PlayButton = ({ onClick, size = 'large' }) => {
         <circle cx="84" cy="84" r="84" fill={`url(#${darkGradientId})`}/>
         
         {/* Fechas en verde siguiendo la curvatura del círculo */}
-        <g fontFamily="'Segoe UI', sans-serif" fontWeight="400" letterSpacing="0.5" fill={`url(#${subtleGreenId})`}>
+        <g fontFamily="'Segoe UI', sans-serif" fontWeight="400" letterSpacing="0.5" fill={`url(#${subtleGreenId})`} filter={`url(#${outerGlowId})`}>
           <text fontSize="11" opacity="0.9">
             <textPath href={`#${topPathId}`} startOffset="0%">1950</textPath>
           </text>
@@ -80,6 +103,9 @@ const PlayButton = ({ onClick, size = 'large' }) => {
         
         {/* Icono de play en el centro con ondas de Spotify */}
         <g>
+          {/* Sombreado para el círculo verde central */}
+          <circle cx="84" cy="84" r="28" fill="rgba(0,0,0,0.3)" filter="blur(3px)" />
+          
           <circle cx="84" cy="84" r="26" fill={`url(#${subtleGreenId})`} />
           
           <g clipPath={`url(#${circleClipId})`}>
