@@ -4,6 +4,15 @@ const PlayButton = ({ onClick, size = 'large' }) => {
   const sizeClasses = size === 'large' 
     ? 'w-48 h-48' 
     : 'w-16 h-16';
+    
+  // Crear IDs únicos para evitar conflictos con múltiples instancias del SVG
+  const buttonId = React.useId();
+  const topPathId = `topPath-${buttonId}`;
+  const bottomPathId = `bottomPath-${buttonId}`;
+  const darkGradientId = `darkGradient-${buttonId}`;
+  const subtleGreenId = `subtleGreen-${buttonId}`;
+  const playGradientId = `playGradient-${buttonId}`;
+  const circleClipId = `circleClip-${buttonId}`;
 
   return (
     <button
@@ -13,30 +22,67 @@ const PlayButton = ({ onClick, size = 'large' }) => {
     >
       <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <defs>
-          <radialGradient id="darkGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+          <radialGradient id={darkGradientId} cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
             <stop offset="0%" stopColor="#2a2a2a" />
             <stop offset="50%" stopColor="#1a1a1a" />
             <stop offset="100%" stopColor="#0d0d0d" />
           </radialGradient>
-          <linearGradient id="subtleGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+          
+          <linearGradient id={subtleGreenId} x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#19a349" />
             <stop offset="100%" stopColor="#15864d" />
           </linearGradient>
-          <linearGradient id="playGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          
+          <linearGradient id={playGradientId} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#333333" />
             <stop offset="100%" stopColor="#1e1e1e" />
           </linearGradient>
-          <clipPath id="circleClip">
+          
+          {/* Trayectorias circulares para textos */}
+          <path id={topPathId} d="M14,84 A70,70 0 1,1 154,84" />
+          <path id={bottomPathId} d="M154,84 A70,70 0 1,1 14,84" />
+          
+          <clipPath id={circleClipId}>
             <circle cx="84" cy="84" r="26" />
           </clipPath>
         </defs>
         
-        <circle cx="84" cy="84" r="84" fill="url(#darkGradient)"/>
+        {/* Círculo principal con degradado */}
+        <circle cx="84" cy="84" r="84" fill={`url(#${darkGradientId})`}/>
         
+        {/* Fechas en verde siguiendo la curvatura del círculo */}
+        <g fontFamily="'Segoe UI', sans-serif" fontWeight="400" letterSpacing="0.5" fill={`url(#${subtleGreenId})`}>
+          <text fontSize="11" opacity="0.9">
+            <textPath href={`#${topPathId}`} startOffset="0%">1950</textPath>
+          </text>
+          <text fontSize="11" opacity="0.9">
+            <textPath href={`#${topPathId}`} startOffset="25%">1970</textPath>
+          </text>
+          <text fontSize="11" opacity="0.9">
+            <textPath href={`#${topPathId}`} startOffset="50%">1987</textPath>
+          </text>
+          <text fontSize="11" opacity="0.9">
+            <textPath href={`#${topPathId}`} startOffset="75%">1990</textPath>
+          </text>
+          <text fontSize="11" opacity="0.9">
+            <textPath href={`#${bottomPathId}`} startOffset="0%">2000</textPath>
+          </text>
+          <text fontSize="11" opacity="0.9">
+            <textPath href={`#${bottomPathId}`} startOffset="25%">2010</textPath>
+          </text>
+          <text fontSize="11" opacity="0.9">
+            <textPath href={`#${bottomPathId}`} startOffset="50%">2020</textPath>
+          </text>
+          <text fontSize="11" opacity="0.9">
+            <textPath href={`#${bottomPathId}`} startOffset="75%">2025</textPath>
+          </text>
+        </g>
+        
+        {/* Icono de play en el centro con ondas de Spotify */}
         <g>
-          <circle cx="84" cy="84" r="26" fill="url(#subtleGreen)" />
+          <circle cx="84" cy="84" r="26" fill={`url(#${subtleGreenId})`} />
           
-          <g clipPath="url(#circleClip)">
+          <g clipPath={`url(#${circleClipId})`}>
             <path d="M84 70
                    C101 70, 116 78, 124 92
                    C115 79, 101 72, 84 72
@@ -60,7 +106,7 @@ const PlayButton = ({ onClick, size = 'large' }) => {
           </g>
           
           <path d="M77,72 C75.5,71 74,71.5 74,74 V94 C74,96.5 75.5,97 77,96 L97,86 C98.5,85 98.5,83 97,82 L77,72Z" 
-                fill="url(#playGradient)" />
+                fill={`url(#${playGradientId})`} />
         </g>
       </svg>
     </button>
