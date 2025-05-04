@@ -2,18 +2,16 @@ import React from 'react';
 
 const PlayButton = ({ onClick, size = 'large' }) => {
   const sizeClasses = size === 'large' 
-    ? 'w-48 h-48 text-5xl' 
-    : 'w-16 h-16 text-2xl';
-
-  const svgSizeClass = size === 'large' ? 'w-36 h-36' : 'w-12 h-12';
+    ? 'w-48 h-48' 
+    : 'w-16 h-16';
 
   return (
     <button
       onClick={onClick}
-      className={`${sizeClasses} bg-spotify-green text-white rounded-full flex items-center justify-center hover:scale-105 transform transition-transform`}
+      className={`${sizeClasses} rounded-full flex items-center justify-center hover:scale-105 transform transition-transform`}
       aria-label="Reproducir"
     >
-      <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" className={svgSizeClass}>
+      <svg viewBox="0 0 168 168" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <defs>
           <radialGradient id="darkGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
             <stop offset="0%" stopColor="#2a2a2a" />
